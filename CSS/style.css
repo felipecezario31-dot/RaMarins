@@ -1,0 +1,721 @@
+/* ============================================================
+   NAIL DESIGNER — styles.css
+   Tema: Luxury Soft — rosê, nude, dourado, preto fosco
+   Fontes: Cormorant Garamond (display) + Nunito (corpo)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@200;300;400;600;700&display=swap');
+
+/* ── Variáveis ────────────────────────────────────────────── */
+:root {
+  --rose:      #C9897A;
+  --rose-dark: #A86E60;
+  --nude:      #F0E0D6;
+  --nude-light:#FAF5F2;
+  --gold:      #C8A96E;
+  --black:     #141010;
+  --black-mid: #1E1818;
+  --gray:      #6B6060;
+  --white:     #FFFFFF;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Nunito', sans-serif;
+
+  --transition: 0.3s ease;
+  --radius:     0.5rem;
+  --shadow:     0 8px 32px rgba(0,0,0,0.12);
+}
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--black);
+  background-color: var(--white);
+  letter-spacing: 0.02em;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='4' fill='%23C9897A' opacity='0.7'/%3E%3C/svg%3E") 10 10, auto;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a   { color: var(--rose); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--rose-dark); }
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--nude-light); }
+::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 3px; }
+
+/* ── Seleção de texto ─────────────────────────────────────── */
+::selection { background: var(--rose); color: var(--white); }
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+#mainNav {
+  min-height: 3.5rem;
+  background-color: transparent;
+  transition: background-color var(--transition), box-shadow var(--transition);
+  padding: 0;
+}
+
+#mainNav .navbar-brand {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.9);
+  padding: 1rem 0;
+  transition: color var(--transition);
+}
+
+#mainNav .navbar-toggler {
+  font-size: 80%;
+  padding: 0.6rem 0.9rem;
+  color: var(--rose);
+  border: 1px solid var(--rose);
+  border-radius: var(--radius);
+  background: transparent;
+}
+#mainNav .navbar-toggler:focus { outline: none; box-shadow: none; }
+
+#mainNav .nav-link {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  padding: 2rem 1.4rem;
+  transition: color var(--transition);
+  position: relative;
+}
+#mainNav .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 1.6rem;
+  left: 1.4rem;
+  right: 1.4rem;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform var(--transition);
+}
+#mainNav .nav-link:hover { color: rgba(255,255,255,0.95); }
+#mainNav .nav-link:hover::after { transform: scaleX(1); }
+#mainNav .nav-link.active { color: var(--white); }
+#mainNav .nav-link.active::after { transform: scaleX(1); }
+
+/* Navbar shrink (ao rolar) */
+#mainNav.navbar-shrink {
+  background-color: var(--white);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+#mainNav.navbar-shrink .navbar-brand { color: var(--black); }
+#mainNav.navbar-shrink .nav-link {
+  color: var(--gray);
+  padding: 1.5rem 1.4rem 1.25rem;
+}
+#mainNav.navbar-shrink .nav-link::after { bottom: 1.1rem; }
+#mainNav.navbar-shrink .nav-link:hover { color: var(--rose); }
+#mainNav.navbar-shrink .nav-link.active { color: var(--rose); }
+
+/* ============================================================
+   HERO — MASTHEAD
+   ============================================================ */
+.masthead {
+  position: relative;
+  width: 100%;
+  min-height: 38rem;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      160deg,
+      rgba(20,16,16,0.55) 0%,
+      rgba(20,16,16,0.75) 60%,
+      rgba(20,16,16,0.95) 100%
+    ),
+    url('../assets/img/bg-masthead.jpg') center/cover no-repeat;
+}
+
+/* Detalhe decorativo no hero */
+.masthead::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 120px;
+  background: linear-gradient(to top, var(--black), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Linha dourada decorativa no canto */
+.masthead::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 8%;
+  width: 1px;
+  height: 35%;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  opacity: 0.6;
+}
+
+.masthead .container { position: relative; z-index: 2; }
+
+.masthead h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: 0.25em;
+  color: transparent;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(200,169,110,0.8) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 auto 0.5rem;
+  animation: fadeUp 1s ease both;
+}
+
+.masthead h2 {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  font-weight: 200;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  max-width: 32rem;
+  margin: 0 auto 2.5rem;
+  animation: fadeUp 1s ease 0.2s both;
+}
+
+/* Subtítulo em itálico estilo display */
+.masthead .tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 300;
+  color: rgba(200,169,110,0.75);
+  display: block;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.05em;
+  animation: fadeUp 1s ease 0.1s both;
+}
+
+/* ── Botões ───────────────────────────────────────────────── */
+.btn {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 1rem 2.2rem;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: none !important;
+  display: inline-block;
+}
+
+.btn-primary {
+  background-color: var(--rose);
+  color: var(--white);
+  animation: fadeUp 1s ease 0.35s both;
+}
+.btn-primary:hover {
+  background-color: var(--rose-dark);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201,137,122,0.35) !important;
+}
+
+.btn-outline-rose {
+  background: transparent;
+  color: var(--rose);
+  border: 1px solid var(--rose);
+}
+.btn-outline-rose:hover {
+  background: var(--rose);
+  color: var(--white);
+}
+
+/* ============================================================
+   SOBRE — ABOUT SECTION
+   ============================================================ */
+.about-section {
+  padding: 8rem 0 6rem;
+  background:
+    linear-gradient(to bottom, var(--black) 0%, var(--black-mid) 60%, var(--black) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Círculo decorativo de fundo */
+.about-section::before {
+  content: '';
+  position: absolute;
+  top: -15%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,137,122,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.about-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+
+.about-section h2 em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.about-section p {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 3rem;
+}
+
+.about-section img {
+  margin: 0 auto;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  opacity: 0.9;
+  transition: opacity var(--transition), transform var(--transition);
+}
+.about-section img:hover { opacity: 1; transform: scale(1.01); }
+
+/* Tags de serviço */
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+.service-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(200,169,110,0.35);
+  padding: 0.35rem 1rem;
+  border-radius: 50px;
+  transition: background var(--transition), color var(--transition);
+}
+.service-tag:hover {
+  background: rgba(200,169,110,0.12);
+  color: var(--gold);
+}
+
+/* ============================================================
+   PORTFÓLIO — PROJECTS SECTION
+   ============================================================ */
+.projects-section {
+  padding: 8rem 0;
+  background-color: var(--nude-light);
+  position: relative;
+}
+
+/* Linha decorativa topo */
+.projects-section::before {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--rose);
+  margin: 0 auto 1rem;
+}
+
+.projects-section .section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--black);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.projects-section .section-subtitle {
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose);
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+/* Linha destaque */
+.projects-section .featured-text {
+  padding: 2.5rem;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .projects-section .featured-text {
+    padding: 0 0 0 3rem;
+    border-left: 3px solid var(--rose);
+  }
+}
+
+.projects-section .featured-text h4 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--black);
+  margin-bottom: 1rem;
+}
+
+.projects-section .featured-text p {
+  font-size: 0.92rem;
+  color: var(--gray);
+  line-height: 1.8;
+}
+
+/* Cards de projeto */
+.project {
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+
+.project::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,137,122,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.project-text {
+  padding: 3.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 992px) {
+  .project-text { padding: 5rem; }
+}
+
+.project-text h4 {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+.project-text h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.project-text p {
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.45);
+}
+
+/* Imagens do portfólio */
+.projects-section .img-fluid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.projects-section .row:hover .img-fluid { transform: scale(1.03); }
+
+/* ============================================================
+   NEWSLETTER — SIGNUP SECTION
+   ============================================================ */
+.signup-section {
+  padding: 10rem 0;
+  position: relative;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(20,16,16,0.55) 0%,
+      rgba(20,16,16,0.8) 100%
+    ),
+    url('../assets/img/bg-signup.jpg') center/cover no-repeat fixed;
+  overflow: hidden;
+}
+
+.signup-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 40px,
+    rgba(255,255,255,0.012) 40px,
+    rgba(255,255,255,0.012) 41px
+  );
+  pointer-events: none;
+}
+
+.signup-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: var(--white);
+}
+
+.signup-section .fa-calendar-check {
+  color: var(--gold) !important;
+}
+
+/* Formulário */
+.form-signup .form-control {
+  height: auto;
+  padding: 1rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--black);
+  background: rgba(255,255,255,0.92);
+  border: 1px solid transparent;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none !important;
+  transition: border-color var(--transition), background var(--transition);
+}
+.form-signup .form-control::placeholder { color: var(--gray); }
+.form-signup .form-control:focus {
+  background: var(--white);
+  border-color: var(--rose);
+}
+
+.form-signup .btn-primary {
+  animation: none;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   CONTATO — CONTACT SECTION
+   ============================================================ */
+.contact-section {
+  padding: 7rem 0 5rem;
+  background-color: var(--black);
+}
+
+.contact-section .card {
+  border: none;
+  border-bottom: 2px solid var(--rose);
+  border-radius: 0;
+  background: var(--black-mid);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+.contact-section .card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+}
+
+.contact-section .card i {
+  font-size: 1.4rem;
+  color: var(--rose);
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: color var(--transition);
+}
+.contact-section .card:hover i { color: var(--gold); }
+
+.contact-section .card h4 {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+.contact-section .card hr {
+  border: none;
+  border-top: 1px solid rgba(201,137,122,0.3);
+  width: 2.5rem;
+  margin: 1rem auto;
+  opacity: 1;
+}
+
+.contact-section .card .small { color: rgba(255,255,255,0.4); }
+.contact-section .card .small a {
+  color: rgba(255,255,255,0.4);
+  transition: color var(--transition);
+}
+.contact-section .card .small a:hover { color: var(--rose); }
+
+/* Redes sociais */
+.contact-section .social {
+  margin-top: 5rem;
+  gap: 0.75rem;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-section .social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: color var(--transition), background var(--transition), border-color var(--transition), transform var(--transition);
+}
+.contact-section .social a:hover {
+  color: var(--white);
+  background: var(--rose);
+  border-color: var(--rose);
+  transform: translateY(-3px);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  padding: 2.5rem 0;
+  background-color: var(--black);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.2);
+}
+
+.footer a {
+  color: rgba(255,255,255,0.3);
+  transition: color var(--transition);
+}
+.footer a:hover { color: var(--rose); }
+
+/* ============================================================
+   ANIMAÇÕES
+   ============================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* Fade-in ao entrar na viewport (via JS Intersection Observer ou classe .visible) */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   UTILITÁRIOS EXTRAS
+   ============================================================ */
+
+/* Divisor dourado */
+.divider-gold {
+  width: 50px;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.5rem auto;
+  opacity: 0.6;
+}
+
+/* Badge de serviço */
+.badge-service {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rose);
+  background: rgba(201,137,122,0.1);
+  border: 1px solid rgba(201,137,122,0.25);
+  padding: 0.3rem 0.85rem;
+  border-radius: 50px;
+}
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+@media (max-width: 991.98px) {
+  #mainNav {
+    background-color: rgba(20,16,16,0.97);
+    backdrop-filter: blur(10px);
+  }
+  #mainNav .navbar-brand { color: var(--white); }
+  #mainNav .nav-link {
+    padding: 0.75rem 0;
+    color: rgba(255,255,255,0.65);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  #mainNav .nav-link::after { display: none; }
+  #mainNav .nav-link:last-child { border-bottom: none; }
+
+  .masthead { height: auto; min-height: 100svh; padding: 8rem 0 5rem; }
+
+  .about-section,
+  .projects-section,
+  .signup-section,
+  .contact-section { padding: 5rem 0; }
+
+  .project-text { padding: 3rem 2rem; }
+  .project-text h4::after { left: 50%; transform: translateX(-50%); }
+}
+
+@media (max-width: 575.98px) {
+  .masthead h1 { letter-spacing: 0.12em; }
+  .masthead h2 { letter-spacing: 0.1em; }
+  .service-tags { justify-content: center; }
+  .contact-section .card { margin-bottom: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
+}
