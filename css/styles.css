@@ -367,13 +367,13 @@ a:hover { color: var(--rose-dark); }
 
 .contact-section {
   padding: 7rem 0 5rem;
-  background: #000000;
+  background: #535353;
 }
 .contact-section .card {
   border: none;
   border-bottom: 2px solid var(--rose);
   border-radius: 0;
-  background: #111111;
+  background: #313131;
   color: var(--white);
   transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
@@ -422,7 +422,7 @@ a:hover { color: var(--rose-dark); }
   border-radius: 50%;
   font-size: 1rem;
   color: var(--white);
-  background: #111111;
+  background: #3f3f3f;
   border: 1px solid rgba(255, 255, 255, 0.15);
   transition: color var(--transition), background var(--transition), border-color var(--transition), transform var(--transition);
 }
